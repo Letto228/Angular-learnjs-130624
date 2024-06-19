@@ -1,4 +1,5 @@
 {
     "*.{ts,js}": ["npx prettier --write", "npx eslint"],
-    "*.html": ["npx prettier --write", "npx eslint"]
+    "*.html": ["npx prettier --write", "npx eslint"],
+    "*.css": ["npx prettier --write", "npx stylelint"]
 }
