@@ -1,0 +1,7 @@
+.product-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    color: var(--mat-stepper-container-color)
+}
