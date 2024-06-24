@@ -1,0 +1,33 @@
+.card-container__price {
+  align-content: center;
+  padding: 0;
+  margin: 0;
+}
+mat-card-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.mat-mdc-card-title-group {
+  padding: 6px 18px;
+}
+mat-card-footer {
+  padding: 6px 16px;
+}
+.mat-mdc-card-actions {
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+}
+.mat-mdc-card-title {
+  color: whitesmoke;
+}
+
+img {
+  max-height: 300px;
+}
+.card-container {
+  color: whitesmoke;
+  max-width: 300px;
+  max-height: 400px;
+  margin: 10px;
+}
