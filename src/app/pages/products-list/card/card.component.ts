@@ -13,9 +13,9 @@ import {Product} from 'src/app/shared/products/product.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-    @Input() product!: Product;
-
-    onPurchaseClick(event: MouseEvent) {
+    @Input() product: Product | null = null;
+    currency = '$';
+    onAddClick(event: MouseEvent) {
         event.stopPropagation();
         console.info(`Event type: ${event.type}`);
     }

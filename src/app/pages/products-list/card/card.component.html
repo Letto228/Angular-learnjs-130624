@@ -1,7 +1,10 @@
 <mat-card appearance="raised" class="product-card">
     <mat-card-header class="product-card-header">
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <button mat-flat-button (click)="onPurchaseClick($event)">PURCHASE</button>
+        <div class="product-card-info">
+            <mat-card-title>{{ product?.name }}</mat-card-title>
+            <p class="product-price">{{ product?.price }}{{ currency }}</p>
+        </div>
+        <button mat-flat-button (click)="onAddClick($event)">Add</button>
     </mat-card-header>
-    <img mat-card-image alt="{{ product.name }}" [src]="product.images[0].url" />
+    <img mat-card-image alt="{{ product?.name }}" [src]="product?.images?.[0]?.url" />
 </mat-card>
