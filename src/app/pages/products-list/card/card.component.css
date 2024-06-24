@@ -1,0 +1,26 @@
+.product-card {
+  max-width: 460px;
+  margin: 1rem;
+  padding: 1.5rem;
+  background-color: var(--mat-stepper-header-icon-foreground-color);
+  border: 1px solid var(--mat-stepper-container-color);
+  border-radius: 1rem;
+  box-shadow: none;
+}
+
+.mat-mdc-card-header.product-card-header {
+  justify-content: space-between;
+  padding: 0;
+}
+
+.product-card-header >.mat-mdc-button {
+  background-color: var(--mat-stepper-header-icon-foreground-color);
+}
+
+.product-price {
+  margin-top: 1rem;
+}
+
+.product-card-info {
+  padding-right: 1.5rem;
+}
