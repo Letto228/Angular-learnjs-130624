@@ -8,7 +8,8 @@ import {productsMock} from '../../../shared/products/products.mock';
 })
 export class CardComponent {
     readonly product = productsMock[0];
-    onClick() {
-        console.log('Button click', this.product.name);
+    onClick(event: MouseEvent) {
+        event.stopPropagation();
+        console.log('Button click', event);
     }
 }
