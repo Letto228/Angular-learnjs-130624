@@ -7,7 +7,7 @@
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
-                    "standalone": true
+                    "standalone": false
                 }
             },
             "root": "",
@@ -97,6 +97,7 @@
         }
     },
     "cli": {
-        "schematicCollections": ["@angular-eslint/schematics"]
+        "schematicCollections": ["@angular-eslint/schematics"],
+        "analytics": "305f0cf7-23d9-4ab0-9de9-121701ac5795"
     }
 }

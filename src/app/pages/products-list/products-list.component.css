@@ -1,0 +1,5 @@
+:host {
+  display: flex;
+  color: #fff;
+  justify-content: space-around;
+}
