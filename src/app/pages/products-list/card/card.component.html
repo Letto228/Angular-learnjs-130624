@@ -13,7 +13,9 @@
         </button>
     </div>
     <mat-card-content>
-        <p>Отзывы: {{ product.feedbacksCount }}</p>
+        <div class="card-content__reviews-basket">
+            <p>Отзывы: {{ product.feedbacksCount }}</p>
+        </div>
         <div class="raiting">
             Рейтинг:
             <mat-icon [class.star-active]="isStarActive(1)">star</mat-icon>

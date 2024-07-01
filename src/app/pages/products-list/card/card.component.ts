@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {productsMock} from '../../../shared/products/products.mock';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Product} from '../../../shared/products/product.interface';
 
 @Component({
     selector: 'app-card',
@@ -8,13 +8,12 @@ import {productsMock} from '../../../shared/products/products.mock';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-    readonly product = productsMock[0];
+    @Input() product!: Product;
+    @Output() readonly btnBuyClick = new EventEmitter<string>();
 
     onProductBuy(event: Event) {
         event.stopPropagation();
-
-        // eslint-disable-next-line no-console
-        console.log('Buy product');
+        this.btnBuyClick.emit(this.product._id);
     }
 
     isStarActive(starIndex: number): boolean {
