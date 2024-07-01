@@ -42,3 +42,8 @@
     overflow: hidden;
     margin: 0 8px;
 }
+
+.card-content__reviews-basket {
+  display: grid;
+  grid-template-columns: 1fr 1fr
+}

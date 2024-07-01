@@ -1,10 +1,12 @@
 <mat-drawer-container autosize class="example-container">
     <mat-drawer mode="side" class="example-sidenav" [opened]="isSidenavOpened">
-        <p>Auto-resizing sidenav</p>
-        <p>Lorem, ipsum dolor sit amet consectetur.</p>
+        <h2>Basket</h2>
+        <div *ngFor="let item of basket">
+            <app-card-mini [product]="item"></app-card-mini>
+        </div>
     </mat-drawer>
-
     <div class="example-sidenav-content">
+        <app-products-list (itemBtnBuyClick)="onItemBtnBuyClick($event)"></app-products-list>
         <button type="button" mat-button (click)="toggleSidenavOpened()">Toggle sidenav</button>
     </div>
 </mat-drawer-container>
