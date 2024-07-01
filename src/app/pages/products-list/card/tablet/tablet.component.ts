@@ -10,11 +10,12 @@ import { productsMock } from '../../../../shared/products/products.mock';
   styleUrls   : [ './tablet.component.css' ]
 } )
 export class TabletComponent {
+  readonly PERCENT_DISCOUNT = 0.1;
   readonly product = productsMock[ 0 ];
-  readonly discount = ( this.product.price * 0.1 );
+  readonly discount = ( this.product.price * this.PERCENT_DISCOUNT );
   readonly discountPrice = this.product.price - this.discount;
 
-  onAddBtnClick( event : { stopPropagation : () => void; } ) {
+  onAddBtnClick( event : MouseEvent ) {
     event.stopPropagation();
     console.log( event );
   }
