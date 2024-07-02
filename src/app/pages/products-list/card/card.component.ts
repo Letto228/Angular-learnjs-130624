@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {productsMock} from '../../../shared/products/products.mock';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Product} from '../../../shared/products/product.interface';
+import {defaultData} from './const';
 
 @Component({
     selector: 'app-card',
@@ -8,13 +9,24 @@ import {productsMock} from '../../../shared/products/products.mock';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-    readonly product = productsMock[0];
+    @Input() product: Product = defaultData;
+    @Output() addToCart: EventEmitter<Product['_id']> = new EventEmitter();
+    imageIndex = 0;
 
     onProductBuy(event: Event) {
         event.stopPropagation();
 
-        // eslint-disable-next-line no-console
-        console.log('Buy product');
+        this.addToCart.emit(this.product._id);
+    }
+
+    nextImageIndex(event: Event) {
+        event.stopPropagation();
+        this.imageIndex = (this.imageIndex + 1) % this.product.images.length;
+    }
+
+    prevImageIndex(event: Event) {
+        event.stopPropagation();
+        this.imageIndex = this.imageIndex ? this.imageIndex - 1 : this.product.images.length - 1;
     }
 
     isStarActive(starIndex: number): boolean {
