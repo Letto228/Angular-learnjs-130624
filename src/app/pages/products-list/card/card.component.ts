@@ -10,7 +10,7 @@ import {defaultData} from './const';
 })
 export class CardComponent {
     @Input() product: Product = defaultData;
-    @Output() addToCart: EventEmitter<Product['_id']> = new EventEmitter();
+    @Output() addToCart = new EventEmitter<Product['_id']>();
     imageIndex = 0;
 
     onProductBuy(event: Event) {

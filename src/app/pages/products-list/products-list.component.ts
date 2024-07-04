@@ -9,12 +9,8 @@ import {Product} from '../../shared/products/product.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
-    readonly productData: Product;
+    readonly productData = this.randomProduct;
     readonly cart: Array<Product['_id']> = [];
-
-    constructor() {
-        this.productData = this.randomProduct;
-    }
 
     addToCart(id: Product['_id']) {
         this.cart.push(id);
@@ -23,7 +19,7 @@ export class ProductsListComponent {
         console.log(this.cart);
     }
 
-    get randomProduct(): Product {
+    private get randomProduct(): Product {
         const randomProductIndex = Math.round(Math.random() * (productsMock.length - 1));
 
         return productsMock[randomProductIndex];
