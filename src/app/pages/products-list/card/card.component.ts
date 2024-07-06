@@ -17,8 +17,10 @@ export class CardComponent {
 
         // eslint-disable-next-line no-console
         console.log('Buy product');
-        //
-        this.productClick.emit(this.product?._id);
+
+        if (this.product) {
+            this.productClick.emit(this.product?._id);
+        }
     }
 
     isStarActive(starIndex: number): boolean {
