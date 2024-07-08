@@ -10,6 +10,7 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './components/sidenav/sidenav.module';
 import {PopupHostModule} from './pages/products-list/popup-host/popup-host.module';
 
+
 @NgModule({
     declarations: [AppComponent],
     imports: [
