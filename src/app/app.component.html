@@ -2,36 +2,49 @@
     [applicationConfig]="applicationConfig"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
+<app-popup-host #appPopup></app-popup-host>
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate let-default="$implicit" let-userName="name">
         {{ default }}
         {{ applicationConfig.title }}
         {{ userName }}
         <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <mat-list-item
+                role="listitem"
+                class="menu-item"
+                (click)="appPopup.popupTemplate = popup1"
+            >
+                Item 1
+            </mat-list-item>
+            <mat-list-item
+                role="listitem"
+                class="menu-item"
+                (click)="appPopup.popupTemplate = popup2"
+            >
+                Item 2
+            </mat-list-item>
+            <mat-list-item
+                role="listitem"
+                class="menu-item"
+                (click)="appPopup.popupTemplate = popup3"
+            >
+                Item 3
+            </mat-list-item>
         </mat-list>
     </ng-template>
 </app-sidenav>
 
-<!-- Homework stand -->
-
-<!-- Switch template -->
-
-<!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
-
-<!-- or -->
-
-<!-- Close template -->
-
-<!-- <app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host> -->
-
-<!-- <ng-template #first>
-    <h2>First</h2>
-    <p>Is first template</p>
+<ng-template #popup1>
+    <h2>-= 1 Title 1 =-</h2>
+    <p>1111111111111111111111 CONTENT 1111111111111111111111</p>
 </ng-template>
-<ng-template #second>
-    <h2>Second</h2>
-    <p>Is second template</p>
-</ng-template> -->
+
+<ng-template #popup2>
+    <h2>-= 2 Title 2 =-</h2>
+    <p>2222222222222222222222 CONTENT 2222222222222222222222</p>
+</ng-template>
+
+<ng-template #popup3>
+    <h2>-= 3 Title 3 =-</h2>
+    <p>3333333333333333333333 CONTENT 3333333333333333333333</p>
+</ng-template>
