@@ -9,6 +9,7 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'all',
     bracketSpacing: false,
+    endOfLine: 'auto',
     arrowParens: 'avoid',
     htmlWhitespaceSensitivity: 'ignore',
     plugins: [require.resolve('prettier-plugin-organize-attributes')],
