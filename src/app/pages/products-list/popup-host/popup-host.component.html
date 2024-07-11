@@ -1,0 +1,6 @@
+<div class="overlay" (click)="closePopup.emit()">
+    <div class="container" (click)="$event.stopPropagation()">
+        <button class="closeButton" (click)="closePopup.emit()">&times;</button>
+        <ng-container #viewport></ng-container>
+    </div>
+</div>
