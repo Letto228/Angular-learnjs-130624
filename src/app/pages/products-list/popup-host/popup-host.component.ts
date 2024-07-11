@@ -1,7 +1,9 @@
 import {
     Component,
+    EventEmitter,
     HostBinding,
     Input,
+    Output,
     TemplateRef,
     ViewChild,
     ViewContainerRef,
@@ -19,27 +21,14 @@ export class PopupHostComponent {
     @HostBinding('style.display')
     hostDisplay = 'none';
 
+    @Output() closePopup = new EventEmitter<void>();
+
     @Input() set popupTemplate(template: TemplateRef<unknown> | null) {
         this.viewport?.clear();
+        this.hostDisplay = template ? 'block' : 'none';
 
         if (template) {
-            this.hostDisplay = 'block';
             this.viewport?.createEmbeddedView(template);
-        } else {
-            this.hostDisplay = 'none';
-        }
-    }
-
-    closePopup() {
-        this.popupTemplate = null;
-    }
-
-    clickHandler(event: MouseEvent) {
-        event.stopPropagation();
-        const target = event.target as HTMLElement;
-
-        if (target.id === 'app-popup-host-overlay' || target.id === 'app-popup-host-close-button') {
-            this.closePopup();
         }
     }
 }

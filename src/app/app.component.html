@@ -2,7 +2,7 @@
     [applicationConfig]="applicationConfig"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-<app-popup-host #appPopup></app-popup-host>
+<app-popup-host #appPopup (closePopup)="appPopup.popupTemplate = null"></app-popup-host>
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate let-default="$implicit" let-userName="name">
         {{ default }}
@@ -34,7 +34,6 @@
     </ng-template>
 </app-sidenav>
 
-
 <ng-template #popup1>
     <h2>-= 1 Title 1 =-</h2>
     <p>1111111111111111111111 CONTENT 1111111111111111111111</p>
@@ -49,4 +48,3 @@
     <h2>-= 3 Title 3 =-</h2>
     <p>3333333333333333333333 CONTENT 3333333333333333333333</p>
 </ng-template>
-
