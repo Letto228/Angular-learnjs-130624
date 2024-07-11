@@ -1,7 +1,7 @@
 import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
 
 export enum LoadDirection {
-    none = 0,
+    none,
     top,
     bottom,
 }
@@ -18,8 +18,7 @@ export class ScrollWithLoadingDirective {
     @Output() loadData = new EventEmitter<LoadDirection>();
 
     @HostListener('scroll', ['$event.target'])
-    onScroll(target: HTMLElement) {
-        const {scrollTop, clientHeight, scrollHeight} = target;
+    onScroll({scrollTop, clientHeight, scrollHeight}: HTMLElement) {
         const scrollBottom = scrollTop + clientHeight;
         const scrollDif = scrollTop - this.oldScrollTop;
         const triggerTop = this.loadDataBorderOffset;
@@ -27,24 +26,23 @@ export class ScrollWithLoadingDirective {
 
         this.oldScrollTop = scrollTop;
 
-        if (scrollDif) {
-            let newLoadDirection = LoadDirection.none;
+        if (!scrollDif) {
+            return;
+        }
 
-            if (scrollDif < 0 && scrollTop <= triggerTop) {
-                newLoadDirection = LoadDirection.top;
-            }
+        let newLoadDirection = LoadDirection.none;
 
-            if (scrollDif > 0 && scrollBottom >= triggerBottom) {
-                newLoadDirection = LoadDirection.bottom;
-            }
+        if (scrollDif < 0 && scrollTop <= triggerTop) {
+            newLoadDirection = LoadDirection.top;
+        }
 
-            if (
-                newLoadDirection !== this.oldLoadDirection &&
-                newLoadDirection !== LoadDirection.none
-            ) {
-                this.oldLoadDirection = newLoadDirection;
-                this.loadData.emit(newLoadDirection);
-            }
+        if (scrollDif > 0 && scrollBottom >= triggerBottom) {
+            newLoadDirection = LoadDirection.bottom;
+        }
+
+        if (newLoadDirection !== this.oldLoadDirection) {
+            this.oldLoadDirection = newLoadDirection;
+            this.loadData.emit(newLoadDirection);
         }
     }
 }
