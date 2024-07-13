@@ -1,11 +1,17 @@
 <!-- Easy вариант -->
+<!--<div-->
+<!--    *ngIf="products$ | async | productsFilter: '1' as products; else loader"-->
+<!--    class="scroll-container"-->
+<!--&gt;-->
+<!-- Hard вариант -->
 <div
-    *ngIf="products$ | async | productsFilter: '1' as products; else loader"
+    *ngIf="products$ | async | filterByProperty: 'name' : 'd' as products; else loader"
     class="scroll-container"
 >
-    <!-- Hard вариант -->
-    <!-- <div *ngIf="((products$ | async) | filterByProperty : propertyName : searchPropertyValue) as products; else loader" class="scroll-container"> -->
-
+    <!--    <div-->
+    <!--        *ngIf="testStringArr | filterByProperty: undefined : '7' as products; else loader"-->
+    <!--        class="scroll-container"-->
+    <!--    >-->
     <!-- Закомментировать при выполнении ДЗ -->
     <!--<div *ngIf="products$ | async as products; else loader" class="scroll-container">-->
     <ng-container

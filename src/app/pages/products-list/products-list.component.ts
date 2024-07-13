@@ -10,7 +10,8 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 })
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
-
+    testStringArr: string[] = ['1', '2', '3', '4'];
+    testNumberArr: number[] = [1, 2, 3, 4, 5];
     readonly products$ = this.productsStoreService.products$;
 
     // For easy
