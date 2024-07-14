@@ -18,6 +18,6 @@ export class PopupHostComponent {
     }
 
     get isOpen(): boolean {
-        return !this.viewport;
+        return !this.viewport?.length;
     }
 }
