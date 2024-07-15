@@ -1,9 +1,9 @@
 import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
 
 export enum LoadDirection {
-    none,
-    top,
-    bottom,
+    none = 'none',
+    top = 'top',
+    bottom = 'bottom',
 }
 
 @Directive({
