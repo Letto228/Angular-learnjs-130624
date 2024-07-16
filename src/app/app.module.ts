@@ -12,9 +12,10 @@ import {PopupHostModule} from './components/popup-host/popup-host.module';
 import {InsetShadowModule} from './shared/inset-shadow/inset-shadow.module';
 import {ProductsStoreService} from './shared/products/products-store.service';
 import {ProductsApiService} from './shared/products/products-api.service';
+import {NameFilterPipe} from './shared/name-filter.pipe';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, NameFilterPipe],
     imports: [
         BrowserModule,
         AppRoutingModule,
