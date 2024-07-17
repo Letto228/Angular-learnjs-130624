@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -9,16 +9,17 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
+    private readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
     private readonly productsStoreService = inject(ProductsStoreService);
 
     readonly products$ = this.productsStoreService.products$;
 
     // For easy
-    name = 'Мышь';
+    name = '';
 
     // For hard
-    readonly propertyName = 'feedbacksCount' as const; // keyof Product
-    searchPropertyValue = 5;
+    propertyName: string | any = ''; // keyof Product
+    searchPropertyValue: any;
 
     constructor() {
         this.productsStoreService.loadProducts();
@@ -31,5 +32,20 @@ export class ProductsListComponent {
 
     trackBy(_index: number, item: Product): Product['_id'] {
         return item._id;
+    }
+
+    changeNameFilter(filterValue: string) {
+        this.name = filterValue;
+        this.changeDetectorRef.markForCheck();
+    }
+
+    changeValueFilter(valueFilter: string | number) {
+        this.searchPropertyValue = valueFilter;
+        this.changeDetectorRef.markForCheck();
+    }
+
+    changeValueFilterCategory(category: string) {
+        this.propertyName = category;
+        this.changeDetectorRef.markForCheck();
     }
 }

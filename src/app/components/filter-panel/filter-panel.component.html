@@ -1,0 +1,33 @@
+<mat-form-field>
+    <mat-label>Filter by name</mat-label>
+    <input matInput [(ngModel)]="nameFilter" (ngModelChange)="filterByNameChanged($event)" />
+    <button mat-icon-button matSuffix aria-label="Clear" (click)="clearNameFilter()">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-form-field>
+
+<mat-divider></mat-divider>
+
+<div class="hard-search-container">
+    <mat-form-field>
+        <mat-label>Filter by...</mat-label>
+        <mat-select
+            [(ngModel)]="valueCategoryFilter"
+            (selectionChange)="filterByValueCategoryChanged($event.value)"
+        >
+            <mat-option *ngFor="let filter of filters" [value]="filter">{{ filter }}</mat-option>
+        </mat-select>
+
+        <button mat-icon-button matSuffix aria-label="Clear" (click)="clearCategoryValueFilter()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Value...</mat-label>
+        <input matInput [(ngModel)]="valueFilter" (ngModelChange)="filterByValueChanged($event)" />
+        <button mat-icon-button matSuffix aria-label="Clear" (click)="clearValueFilter()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
