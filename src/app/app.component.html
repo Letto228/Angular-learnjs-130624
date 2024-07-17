@@ -1,6 +1,7 @@
 <app-header
     [applicationConfig]="applicationConfig"
     (menuClick)="sidenav.toggleSidenavOpened()"
+    (filterPanelClick)="sidenav.toggleFilterPanel()"
 ></app-header>
 <app-sidenav #sidenav>
     <div ngProjectAs="sidenav-content">
@@ -12,5 +13,12 @@
         </mat-list>
     </div>
 
-    <app-products-list></app-products-list>
+    <app-products-list #productList ngProjectAs="main-content"></app-products-list>
+
+    <app-filter-panel
+        ngProjectAs="filter-panel-content"
+        (changeNameFilter)="changeProductsListNameFilterValue($event)"
+        (changeValueFilter)="changeProductsListFilterValue($event)"
+        (changeValueFilterCategory)="changeProductsListFilterCategoryValue($event)"
+    ></app-filter-panel>
 </app-sidenav>

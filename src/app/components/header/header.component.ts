@@ -11,4 +11,6 @@ export class HeaderComponent {
     @Input() applicationConfig: ApplicationConfig | null = null;
 
     @Output() readonly menuClick = new EventEmitter<Event>();
+
+    @Output() readonly filterPanelClick = new EventEmitter<Event>();
 }

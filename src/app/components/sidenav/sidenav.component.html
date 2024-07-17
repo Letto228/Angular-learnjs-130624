@@ -4,6 +4,10 @@
     </mat-drawer>
 
     <div #div class="example-sidenav-content">
-        <ng-content></ng-content>
+        <ng-content select="main-content"></ng-content>
     </div>
+
+    <mat-drawer #filterPanel mode="side" position="end" class="example-sidenav">
+        <ng-content select="filter-panel-content"></ng-content>
+    </mat-drawer>
 </mat-drawer-container>
