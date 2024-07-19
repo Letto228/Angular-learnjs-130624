@@ -25,11 +25,6 @@ const routes: Routes = [
         path: 'product/:id',
         component: ProductComponent,
         children: [
-            // {
-            //     path: '',
-            //     redirectTo: 'description',
-            //     pathMatch: 'full',
-            // },
             {
                 path: 'description',
                 component: DescriptionComponent,
@@ -40,7 +35,6 @@ const routes: Routes = [
             },
             {
                 path: '**',
-                // component: NotFoundComponent,
                 redirectTo: 'description',
                 pathMatch: 'full',
             },
@@ -50,7 +44,6 @@ const routes: Routes = [
         path: '**',
         component: NotFoundComponent,
     },
-    // ...
 ];
 
 @NgModule({
@@ -65,23 +58,3 @@ const routes: Routes = [
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-/**
- * url === http://localhost:4200/product/id/description
- *
- * urlSegments === 'product/id/description'
- *
- * current url segments: ['', 'product', 'id', 'fdsfdsfwerew']
- *
- * search indexes: 0 -> 1 -> 2 -> 3 -> ...
- */
-
-/**
- *            ___________________ undefined ___________________
- *           /                  /           \                  \
- *          /                  /             \                  \
- *       ['']       ['products-list']    ['product', ':id'] ___  ['**']
- *                                     /         |         \   \________
- *                                    /          |          \           \
- *                                 ['']   ['description']   ['type']   ['**']
- */

@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-// import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-type',
@@ -7,8 +6,4 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
     styleUrls: ['./type.component.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TypeComponent {
-    // constructor() {
-    //     console.log(inject(ActivatedRoute).pathFromRoot);
-    // }
-}
+export class TypeComponent {}
