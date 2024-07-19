@@ -10,6 +10,7 @@ import {DescriptionModule} from './pages/product/description/description.module'
 import {TypeModule} from './pages/product/type/type.module';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NotFoundModule} from './pages/not-found/not-found.module';
+import {productsListMatcher} from './pages/products-list/products-list-url-matcher';
 
 const routes: Routes = [
     {
@@ -30,18 +31,25 @@ const routes: Routes = [
     //
     // Реализация с выделением родительского сегмента для уменьшения копипасты
     // -----------------------------------------------------------------------
+    // {
+    //     path: 'products-list',
+    //     children: [
+    //         {
+    //             path: '',
+    //             component: ProductsListComponent,
+    //         },
+    //         {
+    //             path: ':subCategoryId',
+    //             component: ProductsListComponent,
+    //         },
+    //     ],
+    // },
+    //
+    // Реализация с применением унифицированного matcher для объединения конфигов подключающих один компонент
+    // ------------------------------------------------------------------------------------------------------
     {
-        path: 'products-list',
-        children: [
-            {
-                path: '',
-                component: ProductsListComponent,
-            },
-            {
-                path: ':subCategoryId',
-                component: ProductsListComponent,
-            },
-        ],
+        matcher: productsListMatcher,
+        component: ProductsListComponent,
     },
     {
         path: 'product/:id',
