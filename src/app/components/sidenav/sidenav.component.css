@@ -20,7 +20,8 @@
     justify-content: center;
   }
   
-  .example-sidenav {
-    padding: 20px;
-  }
+.example-sidenav {
+    max-width: 400px;
+    padding: 8px;
+}
   
