@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {map, switchMap, tap} from 'rxjs';
 
 @Component({
     selector: 'app-products-list',
@@ -12,12 +13,15 @@ import {Router} from '@angular/router';
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
     private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
 
-    readonly products$ = this.productsStoreService.products$;
-
-    constructor() {
-        this.productsStoreService.loadProducts();
-    }
+    readonly products$ = this.activatedRoute.paramMap.pipe(
+        map(paramMap => paramMap.get('subCategoryId')),
+        tap(subCategoryId => {
+            this.productsStoreService.loadProducts(subCategoryId);
+        }),
+        switchMap(() => this.productsStoreService.products$),
+    );
 
     onProductBuy(id: Product['_id']) {
         // eslint-disable-next-line no-console

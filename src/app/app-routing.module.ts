@@ -17,9 +17,31 @@ const routes: Routes = [
         redirectTo: '/products-list',
         pathMatch: 'full',
     },
+    // Реализация без выделения родительского сегмента
+    // -----------------------------------------------
+    // {
+    //     path: 'products-list',
+    //     component: ProductsListComponent,
+    // },
+    // {
+    //     path: 'products-list/:subCategoryId',
+    //     component: ProductsListComponent,
+    // },
+    //
+    // Реализация с выделением родительского сегмента для уменьшения копипасты
+    // -----------------------------------------------------------------------
     {
         path: 'products-list',
-        component: ProductsListComponent,
+        children: [
+            {
+                path: '',
+                component: ProductsListComponent,
+            },
+            {
+                path: ':subCategoryId',
+                component: ProductsListComponent,
+            },
+        ],
     },
     {
         path: 'product/:id',
