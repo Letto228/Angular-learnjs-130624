@@ -1,6 +1,7 @@
 /**
  * @type {import('prettier').Config}
  */
+const {audit} = require('rxjs');
 module.exports = {
     printWidth: 100,
     tabWidth: 4,
@@ -8,6 +9,7 @@ module.exports = {
     semi: true,
     singleQuote: true,
     trailingComma: 'all',
+    endOfLine: 'auto',
     bracketSpacing: false,
     arrowParens: 'avoid',
     htmlWhitespaceSensitivity: 'ignore',
