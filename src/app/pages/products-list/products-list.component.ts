@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {map, switchMap} from 'rxjs';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-products-list',
@@ -11,9 +12,24 @@ import {Router} from '@angular/router';
 })
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
-    private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
 
-    readonly products$ = this.productsStoreService.products$;
+    readonly products$ = this.activatedRoute.paramMap.pipe(
+        map(paramMap => paramMap.get('id')),
+        switchMap(subCategoryId =>
+            this.productsStoreService.products$.pipe(
+                map(products => {
+                    if (subCategoryId === 'all-products') {
+                        return products;
+                    }
+
+                    return products?.filter(
+                        (product: Product) => product.subCategory === subCategoryId,
+                    );
+                }),
+            ),
+        ),
+    );
 
     constructor() {
         this.productsStoreService.loadProducts();
@@ -26,10 +42,5 @@ export class ProductsListComponent {
 
     trackBy(_index: number, item: Product): Product['_id'] {
         return item._id;
-    }
-
-    navigateToProduct(id: string) {
-        // this.router.navigateByUrl(`/product/${id}/description`);
-        this.router.navigate(['product', id, 'description']);
     }
 }

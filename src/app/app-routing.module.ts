@@ -14,11 +14,11 @@ import {NotFoundModule} from './pages/not-found/not-found.module';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/products-list',
+        redirectTo: '/products-list/sub-category/all-products',
         pathMatch: 'full',
     },
     {
-        path: 'products-list',
+        path: 'products-list/sub-category/:id',
         component: ProductsListComponent,
     },
     {
