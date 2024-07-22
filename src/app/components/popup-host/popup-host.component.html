@@ -1,11 +1,6 @@
-<div *ngIf="popupService.template$ | async" class="popup-host">
+<div *ngIf="template$ | async as template" class="popup-host">
     <div class="content-wrapper">
-        <button class="close-button" (click)="popupService.closePopup()">&times;</button>
-        <ng-container
-            *ngTemplateOutlet="
-                popupService.template$ | async;
-                context: popupService.context$ | async
-            "
-        ></ng-container>
+        <button class="close-button" (click)="closePopup()">&times;</button>
+        <ng-container *ngTemplateOutlet="template; context: context$ | async"></ng-container>
     </div>
 </div>

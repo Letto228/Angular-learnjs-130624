@@ -8,5 +8,11 @@ import {PopupService} from '../../shared/popup/popup.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-    readonly popupService = inject(PopupService);
+    private readonly popupService = inject(PopupService);
+    readonly template$ = this.popupService.template$;
+    readonly context$ = this.popupService.context$;
+
+    closePopup() {
+        this.popupService.closePopup();
+    }
 }
