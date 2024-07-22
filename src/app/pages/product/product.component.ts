@@ -14,8 +14,6 @@ export class ProductComponent {
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly productsStoreService = inject(ProductsStoreService);
 
-    // readonly product$ = of('96-planset-dexp-ursus-s290-32-gb-3g-cernyj').pipe(
-    // readonly product$ = this.activatedRoute.params.pipe(
     readonly product$ = this.activatedRoute.paramMap.pipe(
         map(paramMap => paramMap.get('id')),
         filter(Boolean),
@@ -26,9 +24,6 @@ export class ProductComponent {
     );
 
     navigateToDescription() {
-        // this.router.navigateByUrl(`/`);
-        // this.router.navigateByUrl(`./description`);
-
         const urlTree = this.router.createUrlTree(['./', 'description'], {
             relativeTo: this.activatedRoute,
             queryParams: {
@@ -36,20 +31,13 @@ export class ProductComponent {
             },
         });
 
-        // eslint-disable-next-line no-console
-        console.log(urlTree.toString(), this.activatedRoute.toString());
-
         this.router.navigateByUrl(urlTree);
     }
 
     navigateToType() {
-        // this.router.navigate(['/']);
-        // this.activatedRoute => "product/:id"
         this.router.navigate(['./', 'type'], {
             relativeTo: this.activatedRoute,
             queryParams: {name: 'Egor'},
-            // queryParamsHandling: undefined,
         });
-        // this.router.navigate(['./', 'type']);
     }
 }

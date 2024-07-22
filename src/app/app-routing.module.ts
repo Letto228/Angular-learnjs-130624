@@ -10,6 +10,7 @@ import {DescriptionModule} from './pages/product/description/description.module'
 import {TypeModule} from './pages/product/type/type.module';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NotFoundModule} from './pages/not-found/not-found.module';
+import {productsListMatcher} from './pages/products-list/products-list-url-matcher';
 
 const routes: Routes = [
     {
@@ -17,19 +18,43 @@ const routes: Routes = [
         redirectTo: '/products-list',
         pathMatch: 'full',
     },
+    // Реализация без выделения родительского сегмента
+    // -----------------------------------------------
+    // {
+    //     path: 'products-list',
+    //     component: ProductsListComponent,
+    // },
+    // {
+    //     path: 'products-list/:subCategoryId',
+    //     component: ProductsListComponent,
+    // },
+    //
+    // Реализация с выделением родительского сегмента для уменьшения копипасты
+    // -----------------------------------------------------------------------
+    // {
+    //     path: 'products-list',
+    //     children: [
+    //         {
+    //             path: '',
+    //             component: ProductsListComponent,
+    //         },
+    //         {
+    //             path: ':subCategoryId',
+    //             component: ProductsListComponent,
+    //         },
+    //     ],
+    // },
+    //
+    // Реализация с применением унифицированного matcher для объединения конфигов подключающих один компонент
+    // ------------------------------------------------------------------------------------------------------
     {
-        path: 'products-list',
+        matcher: productsListMatcher,
         component: ProductsListComponent,
     },
     {
         path: 'product/:id',
         component: ProductComponent,
         children: [
-            // {
-            //     path: '',
-            //     redirectTo: 'description',
-            //     pathMatch: 'full',
-            // },
             {
                 path: 'description',
                 component: DescriptionComponent,
@@ -40,7 +65,6 @@ const routes: Routes = [
             },
             {
                 path: '**',
-                // component: NotFoundComponent,
                 redirectTo: 'description',
                 pathMatch: 'full',
             },
@@ -50,7 +74,6 @@ const routes: Routes = [
         path: '**',
         component: NotFoundComponent,
     },
-    // ...
 ];
 
 @NgModule({
@@ -65,23 +88,3 @@ const routes: Routes = [
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-/**
- * url === http://localhost:4200/product/id/description
- *
- * urlSegments === 'product/id/description'
- *
- * current url segments: ['', 'product', 'id', 'fdsfdsfwerew']
- *
- * search indexes: 0 -> 1 -> 2 -> 3 -> ...
- */
-
-/**
- *            ___________________ undefined ___________________
- *           /                  /           \                  \
- *          /                  /             \                  \
- *       ['']       ['products-list']    ['product', ':id'] ___  ['**']
- *                                     /         |         \   \________
- *                                    /          |          \           \
- *                                 ['']   ['description']   ['type']   ['**']
- */
