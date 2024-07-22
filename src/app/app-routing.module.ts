@@ -11,7 +11,6 @@ const routes: Routes = [
     },
     {
         path: 'products-list',
-        // children: productsListRouting,
         loadChildren: () =>
             import('./pages/products-list/products-list.module').then(
                 jsModule => jsModule.ProductsListModule,
@@ -19,7 +18,6 @@ const routes: Routes = [
     },
     {
         path: 'product/:id',
-        // children: productRouting,
         loadChildren: () =>
             import('./pages/product/product.module').then(jsModule => jsModule.ProductModule),
     },
