@@ -1,8 +1,18 @@
 <form #ngForm="ngForm" class="filter" (ngSubmit)="onSubmit(ngForm.value)">
     <mat-form-field appearance="fill">
         <mat-label>Search</mat-label>
-        <input #model="ngModel" matInput ngModel name="search" />
+        <input
+            #model="ngModel"
+            matInput
+            ngModel
+            appIsStringAsyncValidator
+            required
+            name="search"
+            [minlength]="3"
+        />
     </mat-form-field>
+
+    {{ model.errors | json }}
 
     <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
         <mat-checkbox

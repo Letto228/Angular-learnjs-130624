@@ -7,8 +7,17 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {
+    AbstractControl,
+    FormArray,
+    FormControl,
+    FormGroup,
+    ValidationErrors,
+    Validators,
+} from '@angular/forms';
+import {Observable, map, timer} from 'rxjs';
 import {IProductsFilter} from '../products-filter.interface';
+import {isStringValidator} from './validators/is-string.validator';
 
 @Component({
     selector: 'app-filter',
@@ -24,13 +33,20 @@ export class FilterComponent implements OnChanges {
     readonly control = new FormControl(500);
 
     readonly form = new FormGroup({
-        search: new FormControl(''),
+        search: new FormControl('', {
+            validators: [Validators.required, Validators.minLength(3)],
+            asyncValidators: [this.isStringAsyncValidator.bind(this)],
+        }),
         brands: new FormArray<FormControl<boolean>>([]),
         priceRange: new FormGroup({
             min: new FormControl(0),
             max: new FormControl(999999),
         }),
     });
+
+    readonly searchErrors$ = this.form
+        .get('search')
+        ?.statusChanges.pipe(map(() => this.form.get('search')?.value));
 
     ngOnChanges({brands}: SimpleChanges): void {
         if (brands) {
@@ -46,5 +62,10 @@ export class FilterComponent implements OnChanges {
         const formArray = new FormArray(brandsForms as Array<FormControl<boolean>>);
 
         this.form.setControl('brands', formArray);
+    }
+
+    // AsyncValidatorFn
+    private isStringAsyncValidator(control: AbstractControl): Observable<ValidationErrors | null> {
+        return timer(2000).pipe(map(() => isStringValidator(control)));
     }
 }

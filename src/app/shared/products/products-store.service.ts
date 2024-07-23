@@ -3,12 +3,16 @@ import {Injectable, inject} from '@angular/core';
 import {Product} from './product.interface';
 import {ProductsApiService} from './products-api.service';
 import {SubCategory} from '../categories/sub-category.interface';
+import {Store} from '@ngrx/store';
+import {State} from '../../store/state';
+import {addProducts} from '../../store/products/products.actions';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProductsStoreService {
     private readonly productsApiService = inject(ProductsApiService);
+    private readonly store = inject<Store<State>>(Store);
 
     private readonly productsStore$ = new BehaviorSubject<Product[] | null>(null);
     private readonly currentProductStore$ = new BehaviorSubject<Product | null>(null);
@@ -27,6 +31,7 @@ export class ProductsStoreService {
         this.activeLoadProductsSubscription = this.productsApiService
             .getProducts$(subCategoryId)
             .subscribe(products => {
+                this.store.dispatch(addProducts(products));
                 this.productsStore$.next(products);
 
                 this.activeLoadProductsSubscription = null;

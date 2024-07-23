@@ -4,6 +4,11 @@
         <input matInput formControlName="search" />
     </mat-form-field>
 
+    {{ form.get('search')?.errors | json }}
+    {{ searchErrors$ | async | json }}
+    {{ form.get('search')?.valid }}
+    Fiorm groupo valid: {{ form.valid }}
+
     <div *ngIf="brands; else loaderTemplateRef" formArrayName="brands" class="checkbox-container">
         <mat-checkbox *ngFor="let brand of brands; let index = index" [formControlName]="index">
             {{ brand }}

@@ -6,6 +6,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {FilterComponent} from './filter.component';
 import {CounterInputModule} from '../../../../shared/counter-input/counter-input.module';
+import {IsStringValidatorModule} from './validators/is-string-validator/is-string-validator.module';
+import {IsStringAsyncValidatorModule} from './validators/is-string-async-validator/is-string-async-validator.module';
 
 @NgModule({
     declarations: [FilterComponent],
@@ -16,6 +18,8 @@ import {CounterInputModule} from '../../../../shared/counter-input/counter-input
         MatProgressSpinnerModule,
         CounterInputModule,
         FormsModule,
+        IsStringValidatorModule,
+        IsStringAsyncValidatorModule,
     ],
     exports: [FilterComponent],
 })
