@@ -1,13 +1,10 @@
-<!-- <div ngForm></div> -->
 <form #ngForm="ngForm" class="filter" (ngSubmit)="onSubmit(ngForm.value)">
     <mat-form-field appearance="fill">
         <mat-label>Search</mat-label>
         <input #model="ngModel" matInput ngModel name="search" />
-        <!-- {{model.value}} -->
     </mat-form-field>
 
     <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
-        <!-- <mat-checkbox *ngFor="let brand of brands; let index = index" ngModel [name]="index.toString()"> -->
         <mat-checkbox
             *ngFor="let brand of brands; let index = index"
             [ngModel]="false"
@@ -19,8 +16,6 @@
     <div ngModelGroup="priceRange" class="price-range">
         <div>
             Min
-            <!-- <app-counter-input [ngModel]="counter" (ngModelChange)="onCounterChange($event)"></app-counter-input> -->
-            <!-- <app-counter-input [(ngModel)]="counter"></app-counter-input> -->
             <app-counter-input name="min" [ngModel]="0"></app-counter-input>
         </div>
         <div>

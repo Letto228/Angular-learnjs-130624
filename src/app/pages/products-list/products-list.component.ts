@@ -41,9 +41,4 @@ export class ProductsListComponent {
     trackBy(_index: number, item: Product): Product['_id'] {
         return item._id;
     }
-
-    navigateToProduct(id: string) {
-        // this.router.navigateByUrl(`/product/${id}/description`);
-        this.router.navigate(['product', id, 'description']);
-    }
 }
